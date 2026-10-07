@@ -1,0 +1,93 @@
+#include <iostream>
+using namespace std;
+
+// FUNCTION return tanpa parameter
+string judul() {
+    return "PEMINJAMAN ALAT LABORATORIUM";
+}
+
+// FUNCTION return dengan parameter
+int sisaStok(int stok, int jumlah) {
+    return stok - jumlah;
+}
+
+// FUNCTION non-return tanpa parameter
+void menu() {
+    cout << "\n=== MENU ===\n";
+    cout << "1. Lihat Stok\n";
+    cout << "2. Pinjam Alat\n";
+    cout << "0. Keluar\n";
+}
+
+// FUNCTION non-return dengan parameter
+void pesan(string teks) {
+    cout << teks << endl;
+}
+
+class Laboratorium {
+public:
+    int stok = 10;
+
+    // METHOD return tanpa parameter
+    int getStok() {
+        return stok;
+    }
+
+    // METHOD return dengan parameter
+    bool tersedia(int jumlah) {
+        return stok >= jumlah;
+    }
+
+    // METHOD non-return tanpa parameter
+    void tampil() {
+        cout << "Stok alat: " << stok << endl;
+    }
+
+    // METHOD non-return dengan parameter
+    void pinjam(int jumlah) {
+        stok -= jumlah;
+    }
+};
+
+int main() {
+    Laboratorium lab;
+    int pilih, jumlah;
+
+    cout << "============================\n";
+    cout << "       KELOMPOK 39\n";
+    cout << "============================\n";
+    cout << judul() << endl;
+
+    do {
+        menu();
+        cout << "Pilih: ";
+        cin >> pilih;
+
+        if (pilih == 1) {
+            lab.tampil();
+        }
+        else if (pilih == 2) {
+            cout << "Jumlah yang dipinjam: ";
+            cin >> jumlah;
+
+            if (jumlah > 0 && lab.tersedia(jumlah)) {
+                lab.pinjam(jumlah);
+
+                cout << "Peminjaman berhasil.\n";
+                cout << "Sisa stok: " << lab.getStok() << endl;
+            }
+            else {
+                pesan("Stok tidak mencukupi.");
+            }
+        }
+        else if (pilih != 0) {
+            pesan("Pilihan tidak tersedia.");
+        }
+
+    } while (pilih != 0);
+
+    cout << "\nProgram selesai.\n";
+    cout << "KELOMPOK 39\n";
+
+    return 0;
+}
